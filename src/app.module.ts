@@ -37,7 +37,6 @@ const remoteDbConfig =
                 database,
                 entities,
                 synchronize: true,
-                useUnifiedTopology: true,
               };
             }
             return {

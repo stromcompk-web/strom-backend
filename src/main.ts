@@ -1,8 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { dirname, resolve } from 'path';
+import { mkdirSync, existsSync } from 'fs';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const dbPath = process.env.DATABASE_PATH || './data/dazzle.db';
+  const dataDir = resolve(process.cwd(), dirname(dbPath));
+  if (!existsSync(dataDir)) {
+    mkdirSync(dataDir, { recursive: true });
+  }
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
