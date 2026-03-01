@@ -5,11 +5,7 @@ import { hashPassword } from '../auth/password.util';
 import { Admin } from '../auth/admin.entity';
 import { Product } from '../products/product.entity';
 
-const DEFAULT_ADMIN = {
-  email: 'admin@engine.com',
-  password: 'admin123',
-};
-
+/** Admin user is created in DB from env (ADMIN_EMAIL, ADMIN_PASSWORD). No credentials in code. */
 const SEED_PRODUCTS: Partial<Product>[] = [
   {
     id: 'm1',
@@ -137,17 +133,23 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedAdmin() {
+    const email = process.env.ADMIN_EMAIL?.trim();
+    const password = process.env.ADMIN_PASSWORD;
+    if (!email || !password) {
+      console.log('Seed: ADMIN_EMAIL and ADMIN_PASSWORD not set — skipping admin creation. Set them in .env to create admin in DB.');
+      return;
+    }
     const existing = await this.adminRepo.findOne({
-      where: { email: DEFAULT_ADMIN.email.toLowerCase() },
+      where: { email: email.toLowerCase() },
     });
     if (existing) return;
-    const hash = await hashPassword(DEFAULT_ADMIN.password);
+    const hash = await hashPassword(password);
     const admin = this.adminRepo.create({
-      email: DEFAULT_ADMIN.email.toLowerCase(),
+      email: email.toLowerCase(),
       passwordHash: hash,
     });
     await this.adminRepo.save(admin);
-    console.log('Seeded default admin: admin@engine.com');
+    console.log('Seeded admin in DB:', email);
   }
 
   private async seedProducts() {
