@@ -15,8 +15,8 @@ Copy `.env.example` to `.env` and adjust:
 
 - `PORT` - Server port (default: 3001)
 - `JWT_SECRET` - Secret for JWT tokens
-- `ADMIN_EMAIL` - Admin login email (set in .env or server; not in code). Seed creates this user in DB on first run.
-- `ADMIN_PASSWORD` - Admin login password (set in .env or server only). Keep secret.
+- `ADMIN_EMAIL` - Set in .env so seed can create admin in DB (first run). Not stored in repo.
+- `ADMIN_PASSWORD` - Set in .env with ADMIN_EMAIL. Keep private.
 - `CORS_ORIGIN` - Frontend URL (default: http://localhost:5173)
 - `DATABASE_PATH` - SQLite database path (default: ./data/strom.db)
 - `DATABASE_URL` - (Optional) Remote DB for sync. Supports **PostgreSQL** (e.g. Render Postgres, Neon) or **MongoDB Atlas**. When set, the backend keeps a local SQLite copy and auto-syncs so data persists when the server sleeps (e.g. on Render free tier).
@@ -47,7 +47,7 @@ npm run start:prod
 ## API
 
 - **Auth**: `POST /auth/login`, `GET /auth/me` (Bearer token)
-- **Products**: `GET /products`, `GET /products/:id`, `POST /products`, `PUT /products/:id`, `DELETE /products/:id`
+- **Products**: `GET /products`, `GET /products/:id`, ...
 - **Orders**: `GET /orders`, `POST /orders`, `PATCH /orders/:id/status`
 - **Customers**: `GET /customers`
 - **Analytics**: `GET /analytics/dashboard`, `GET /analytics/sales-by-month`, etc.
@@ -59,6 +59,6 @@ npm run start:prod
 - [ ] Set `CORS_ORIGIN` to your frontend URL(s). Multiple origins: comma-separated (e.g. `https://yourapp.com,https://admin.yourapp.com`).
 - [ ] Set `DATABASE_URL` to MongoDB Atlas or Postgres so data persists when the server sleeps (e.g. on Render).
 - [ ] Ensure frontend builds with `VITE_API_URL` set to your backend URL (e.g. `https://your-backend.onrender.com`).
-- [ ] Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in .env or on your host (e.g. Render). Only you should know these; they are not stored in the repo. Change password after first login in production.
+- [ ] Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in .env (and on server). Seed creates admin in DB on first run. Nowhere else in project.
 
 
