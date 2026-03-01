@@ -14,8 +14,10 @@ import { Product } from './products/product.entity';
 import { Order } from './orders/order.entity';
 import { OrderItem } from './orders/order-item.entity';
 import { Customer } from './customers/customer.entity';
+import { Review } from './reviews/review.entity';
+import { ReviewsModule } from './reviews/reviews.module';
 
-const entities = [Admin, Product, Order, OrderItem, Customer];
+const entities = [Admin, Product, Order, OrderItem, Customer, Review];
 
 const dbUrl = process.env.DATABASE_URL;
 const isMongo = dbUrl?.startsWith('mongodb');
@@ -70,6 +72,7 @@ const remoteDbConfig =
     OrdersModule,
     CustomersModule,
     AnalyticsModule,
+    ReviewsModule,
   ],
 })
 export class AppModule {}

@@ -7,15 +7,17 @@ import { Product } from '../products/product.entity';
 import { Order } from '../orders/order.entity';
 import { OrderItem } from '../orders/order-item.entity';
 import { Customer } from '../customers/customer.entity';
+import { Review } from '../reviews/review.entity';
 
-const ENTITIES = [Admin, Product, Order, OrderItem, Customer] as const;
-/** Order for sync: no FK → then orders (customerId) → then order_items (orderId) */
+const ENTITIES = [Admin, Product, Order, OrderItem, Customer, Review] as const;
+/** Order for sync: no FK → then orders (customerId) → then order_items (orderId) → reviews */
 const SYNC_ORDER: Array<{ entity: (typeof ENTITIES)[number]; table: string }> = [
   { entity: Admin, table: 'admins' },
   { entity: Customer, table: 'customers' },
   { entity: Product, table: 'products' },
   { entity: Order, table: 'orders' },
   { entity: OrderItem, table: 'order_items' },
+  { entity: Review, table: 'reviews' },
 ];
 
 @Injectable()

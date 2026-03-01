@@ -1,7 +1,7 @@
 {
-  "name": "dazzle-draft-den-backend",
+  "name": "strom-backend",
   "version": "1.0.0",
-  "description": "NestJS backend for Dazzle Draft Den",
+  "description": "NestJS backend for Strom e-commerce",
   "scripts": {
     "build": "node node_modules/@nestjs/cli/bin/nest.js build",
     "start": "node dist/main",

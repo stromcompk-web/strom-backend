@@ -1,6 +1,6 @@
-# Dazzle Draft Den - Backend
+# Strom - Backend
 
-NestJS backend for the Dazzle Draft Den e-commerce application.
+NestJS backend for the Strom e-commerce application.
 
 ## Setup
 
@@ -16,7 +16,7 @@ Copy `.env.example` to `.env` and adjust:
 - `PORT` - Server port (default: 3001)
 - `JWT_SECRET` - Secret for JWT tokens
 - `CORS_ORIGIN` - Frontend URL (default: http://localhost:5173)
-- `DATABASE_PATH` - SQLite database path (default: ./data/dazzle.db)
+- `DATABASE_PATH` - SQLite database path (default: ./data/strom.db)
 - `DATABASE_URL` - (Optional) Remote DB for sync. Supports **PostgreSQL** (e.g. Render Postgres, Neon) or **MongoDB Atlas**. When set, the backend keeps a local SQLite copy and auto-syncs so data persists when the server sleeps (e.g. on Render free tier).
 - `DATABASE_SSL` - Set to `false` to disable SSL for PostgreSQL `DATABASE_URL` (e.g. local Postgres). Ignored for MongoDB.
 
